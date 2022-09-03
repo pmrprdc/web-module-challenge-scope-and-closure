@@ -30,11 +30,16 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+    Counter1 will store the data inside the smaller scope of itself, the count variable is private.
+    Counter2 has no storage capability on it's own. Count is being saved in global scope.
   2. Which of the two uses a closure? How can you tell?
+  Both are using closure because they are accessing data from outside their initial scope to complete the function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+      Counter1 is preferable if we want to privatise our count variable and not give it access to global scope and save memory. It's also 
+      easier to make multiple different counters.
+      Counter2 is preferable if memory is not an issue as well as we don't need to use multiple counters.
 */
 
 // counter1 code
@@ -64,9 +69,16 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  return Math.floor(Math.random()* 3);
 }
+
+
+
+
+
+
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -83,9 +95,17 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, numofin){
+  let newObj = {};
+  for(let i = 0; i < numofin; i++) {
+    newObj.Home = inning();
+    newObj.Away = inning();
+    console.log('hey')
+  }
+  return newObj;
 }
+
+
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,8 +121,11 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(callback) {
+    let newObj = {};
+    newObj.Home = callback();
+    newObj.Away = callback();
+    return newObj;
 
 }
 
